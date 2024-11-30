@@ -3,19 +3,22 @@ package digital.project.employeemanagement.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
+import digital.project.employeemanagement.configuration.UserResponse;
 import digital.project.employeemanagement.model.EmployeeDetails;
 
 public interface EmployeeService {
 	
-	EmployeeDetails createEmployee(EmployeeDetails employeeDetails);
+	UserResponse createEmployee(EmployeeDetails employeeDetails);
 	
 	EmployeeDetails updateEmployee(int employeeCode, EmployeeDetails employeeDetails);
 	
-	Optional<EmployeeDetails> getEmployeeDetailsById(int employeeCode);
+	ResponseEntity<?> getEmployeeDetailsByEmployeeCode(int employeeCode);
 	
 	List<EmployeeDetails> getAllEmployees();
 	
-	boolean deleteEmployee(int employeeCode);
+	String deleteEmployee(int employeeCode);
 	
 	 EmployeeDetails getEmployeeByDomainEmail(String domainEmail);
 	
@@ -36,5 +39,6 @@ public interface EmployeeService {
 	 List<EmployeeDetails> getEmployeesByJoiningDateAfter(String date);
 	 
 	 long getEmployeeCountByDepartment(long departmentId);
+
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Type;
+
 
 @Entity
 @Table (name = "Employees_Details")
@@ -20,18 +22,36 @@ public class EmployeeDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "Employee_Id", unique = true, nullable = false)
-	private String employeeId;
+	private int employeeId;
 	
 	@Column(name = "Employee_Code", nullable = false)
-	private int employeeCode;
+	private String employeeCode;
 	
-	@Column (name = "Employee_Name", nullable = false, length = 100)
-	private String employeeName;
+	@Column (name = "Employee_First_Name", nullable = false, length = 100)
+	private String employeeFirstName;
 	
+	@Column (name = "Employee_Last_Name", nullable = false)
+	private String employeeLastName;
+	
+	public String getEmployeeFirstName() {
+		return employeeFirstName;
+	}
+
+	public void setEmployeeFirstName(String employeeFirstName) {
+		this.employeeFirstName = employeeFirstName;
+	}
+
+	public String getEmployeeLastName() {
+		return employeeLastName;
+	}
+
+	public void setEmployeeLastName(String employeeLastName) {
+		this.employeeLastName = employeeLastName;
+	}
+
 	@Column (name = "Manager_Name")
 	private String employeeManagerName;
 	
-	@Column (name = "Date_Of_Birth")
 	private LocalDate dateOfBirth;
 	
 	@Column (name = "Employee_Salary")
@@ -40,9 +60,11 @@ public class EmployeeDetails {
 	@Column (name = "Date_Of_Joining")
 	private LocalDate dateOfJoining;
 	
+	
 	@Column (name = "Job_Id")
 	private int jobId;
 
+	
 	@Column (name = "Department_Id")
 	private long departmentId;
 	
@@ -84,28 +106,44 @@ public class EmployeeDetails {
 	
 	@Column (name = "Father_Name")
 	private String fatherName;
+	
+	@Column (name = "Active_Status")
+	@Type (type = "yes_no")
+	private boolean employeeStatus;
+	
+	private String password;
 
-	public int getEmployeeCode() {
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEmployeeStatus() {
+		return employeeStatus;
+	}
+
+	public void setEmployeeStatus(boolean employeeStatus) {
+		this.employeeStatus = employeeStatus;
+	}
+
+	public String getEmployeeCode() {
 		return employeeCode;
 	}
 
-	public void setEmployeeCode(int employeeCode) {
-		this.employeeCode = employeeCode;
+	public void setEmployeeCode(String employeeCode2) {
+		this.employeeCode = employeeCode2;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
-	}
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
 
-	public String getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -265,15 +303,16 @@ public class EmployeeDetails {
 
 	@Override
 	public String toString() {
-		return "EmployeeDetails [employeeCode=" + employeeCode + ", employeeName=" + employeeName + ", employeeId="
-				+ employeeId + ", employeeManagerName=" + employeeManagerName + ", dateOfBirth=" + dateOfBirth
-				+ ", employeeSalary=" + employeeSalary + ", dateOfJoining=" + dateOfJoining + ", jobId=" + jobId
-				+ ", departmentId=" + departmentId + ", departmentName=" + departmentName + ", employeeDesignation="
-				+ employeeDesignation + ", mobileNumber=" + mobileNumber + ", personalEmailAddress="
-				+ personalEmailAddress + ", domainEmailAddress=" + domainEmailAddress + ", gender=" + gender
-				+ ", jobType=" + jobType + ", maritalStatus=" + maritalStatus + ", bloodGroup=" + bloodGroup
-				+ ", panNumber=" + panNumber + ", aadharCardNumber=" + aadharCardNumber + ", passportNumber="
-				+ passportNumber + ", fatherName=" + fatherName + "]";
+		return "EmployeeDetails [employeeId=" + employeeId + ", employeeCode=" + employeeCode + ", employeeFirstName="
+				+ employeeFirstName + ", employeeLastName=" + employeeLastName + ", employeeManagerName="
+				+ employeeManagerName + ", dateOfBirth=" + dateOfBirth + ", employeeSalary=" + employeeSalary
+				+ ", dateOfJoining=" + dateOfJoining + ", jobId=" + jobId + ", departmentId=" + departmentId
+				+ ", departmentName=" + departmentName + ", employeeDesignation=" + employeeDesignation
+				+ ", mobileNumber=" + mobileNumber + ", personalEmailAddress=" + personalEmailAddress
+				+ ", domainEmailAddress=" + domainEmailAddress + ", gender=" + gender + ", jobType=" + jobType
+				+ ", maritalStatus=" + maritalStatus + ", bloodGroup=" + bloodGroup + ", panNumber=" + panNumber
+				+ ", aadharCardNumber=" + aadharCardNumber + ", passportNumber=" + passportNumber + ", fatherName="
+				+ fatherName + ", employeeStatus=" + employeeStatus + "]";
 	}
 
 	@Override
@@ -287,11 +326,12 @@ public class EmployeeDetails {
 		result = prime * result + (int) (departmentId ^ (departmentId >>> 32));
 		result = prime * result + ((departmentName == null) ? 0 : departmentName.hashCode());
 		result = prime * result + ((domainEmailAddress == null) ? 0 : domainEmailAddress.hashCode());
-		result = prime * result + employeeCode;
+		result = prime * result + ((employeeCode == null) ? 0 : employeeCode.hashCode());
 		result = prime * result + ((employeeDesignation == null) ? 0 : employeeDesignation.hashCode());
-		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
+		result = prime * result + ((employeeFirstName == null) ? 0 : employeeFirstName.hashCode());
+		result = prime * result + employeeId;
+		result = prime * result + ((employeeLastName == null) ? 0 : employeeLastName.hashCode());
 		result = prime * result + ((employeeManagerName == null) ? 0 : employeeManagerName.hashCode());
-		result = prime * result + ((employeeName == null) ? 0 : employeeName.hashCode());
 		result = prime * result + ((employeeSalary == null) ? 0 : employeeSalary.hashCode());
 		result = prime * result + ((fatherName == null) ? 0 : fatherName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
@@ -346,27 +386,32 @@ public class EmployeeDetails {
 				return false;
 		} else if (!domainEmailAddress.equals(other.domainEmailAddress))
 			return false;
-		if (employeeCode != other.employeeCode)
+		if (employeeCode == null) {
+			if (other.employeeCode != null)
+				return false;
+		} else if (!employeeCode.equals(other.employeeCode))
 			return false;
 		if (employeeDesignation == null) {
 			if (other.employeeDesignation != null)
 				return false;
 		} else if (!employeeDesignation.equals(other.employeeDesignation))
 			return false;
-		if (employeeId == null) {
-			if (other.employeeId != null)
+		if (employeeFirstName == null) {
+			if (other.employeeFirstName != null)
 				return false;
-		} else if (!employeeId.equals(other.employeeId))
+		} else if (!employeeFirstName.equals(other.employeeFirstName))
+			return false;
+		if (employeeId != other.employeeId)
+			return false;
+		if (employeeLastName == null) {
+			if (other.employeeLastName != null)
+				return false;
+		} else if (!employeeLastName.equals(other.employeeLastName))
 			return false;
 		if (employeeManagerName == null) {
 			if (other.employeeManagerName != null)
 				return false;
 		} else if (!employeeManagerName.equals(other.employeeManagerName))
-			return false;
-		if (employeeName == null) {
-			if (other.employeeName != null)
-				return false;
-		} else if (!employeeName.equals(other.employeeName))
 			return false;
 		if (employeeSalary == null) {
 			if (other.employeeSalary != null)
@@ -417,7 +462,6 @@ public class EmployeeDetails {
 			return false;
 		return true;
 	}
-	
 	
 	
 }

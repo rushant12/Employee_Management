@@ -1,12 +1,14 @@
 package digital.project.employeemanagement.exception;
 
+import java.time.LocalDateTime;
+
 public class ExceptionData {
 	
     private int code;
     
     private String message;
     
-    private long timestamp;
+    private LocalDateTime timestamp;
     
     private String path;
 
@@ -26,11 +28,13 @@ public class ExceptionData {
 		this.message = message;
 	}
 
-	public long getTimestamp() {
+
+
+	public LocalDateTime getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(long timestamp) {
+	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 
