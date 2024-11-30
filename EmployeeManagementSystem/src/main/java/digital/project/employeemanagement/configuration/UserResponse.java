@@ -6,6 +6,8 @@ public class UserResponse {
 	
 	private String url;
 
+
+
 	public String getMsg() {
 		return msg;
 	}
