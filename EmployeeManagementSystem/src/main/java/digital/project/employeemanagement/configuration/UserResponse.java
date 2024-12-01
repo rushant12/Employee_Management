@@ -1,5 +1,6 @@
 package digital.project.employeemanagement.configuration;
 
+
 public class UserResponse {
 	
 	private String msg;
