@@ -47,7 +47,6 @@ public class EmployeeServiceImplementation implements EmployeeService{
     {
        throw new DuplicateFound("Employee already exist");							
     } 
-	   System.out.println("===========================Helo====================");
        String employeeCode = EmployeeUtility.employeeCodeGenerator(employeeRepository.count());
 	   employeeDetails.setEmployeeCode(employeeCode);
 	   
